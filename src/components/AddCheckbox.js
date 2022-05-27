@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-const defaultState = {
-  nombre: "",
-  email: "",
-  telefono: ""
-};
+const defaultState = {};
 
 function Checkbox({ onChange, onRemove, check }) {
   return (
@@ -24,34 +20,34 @@ function Checkbox({ onChange, onRemove, check }) {
 
 export default function AddCheckbox () {
 
-  const [ rows, setRows ] = useState([defaultState]);
+  const [ checkboxs, setCheckboxes ] = useState([defaultState]);
 
 
   const handleOnChange = (index, name, value) => {
-    const copyRows = [...rows];
-    copyRows[index]= {
-      ...copyRows[index],
+    const copyCheckboxs = [...checkboxs];
+    copyCheckboxs[index]= {
+      ...copyCheckboxs[index],
       [name]: value
     };
-    setRows(copyRows);
+    setCheckboxes(copyCheckboxs);
   };
 
 
   const handleOnAdd = () => {
-    setRows(rows.concat(defaultState));
+    setCheckboxes(checkboxs.concat(defaultState));
   };
 
 
   const handleOnRemove = index => {
-    const copyRows = [...rows];
-    copyRows.splice(index, 1);
-    setRows(copyRows);
+    const copyCheckboxs = [...checkboxs];
+    copyCheckboxs.splice(index, 1);
+    setCheckboxes(copyCheckboxs);
   };
 
 
   return (
     <div className='wrapper-checkboxes'>
-      {rows.map((row, index) => (
+      {checkboxs.map((row, index) => (
         <Checkbox
           {...row}
           onChange={(name, value) => handleOnChange(index, name, value)}

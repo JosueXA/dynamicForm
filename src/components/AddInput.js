@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-const defaultState = {
-  nombre: "",
-  email: "",
-  telefono: ""
-};
+const defaultState = {};
 
 function Input({ onChange, onRemove, nombre }) {
   return (
@@ -31,34 +27,34 @@ function Input({ onChange, onRemove, nombre }) {
 
 export default function AddInput () {
 
-  const [ rows, setRows ] = useState([defaultState]);
+  const [ inputs, setInputs ] = useState([defaultState]);
 
 
   const handleOnChange = (index, name, value) => {
-    const copyRows = [...rows];
-    copyRows[index]= {
-      ...copyRows[index],
+    const copyInputs = [...inputs];
+    copyInputs[index]= {
+      ...copyInputs[index],
       [name]: value
     };
-    setRows(copyRows);
+    setInputs(copyInputs);
   };
 
 
   const handleOnAdd = () => {
-    setRows(rows.concat(defaultState));
+    setInputs(inputs.concat(defaultState));
   };
 
 
   const handleOnRemove = index => {
-    const copyRows = [...rows];
-    copyRows.splice(index, 1);
-    setRows(copyRows);
+    const copyInputs = [...inputs];
+    copyInputs.splice(index, 1);
+    setInputs(copyInputs);
   };
 
 
   return (
     <div className='wrapper-inputs'>
-      {rows.map((row, index) => (
+      {inputs.map((row, index) => (
         <Input
           {...row}
           onChange={(name, value) => handleOnChange(index, name, value)}

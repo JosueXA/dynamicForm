@@ -29,34 +29,34 @@ function Select({ onChange, onRemove, val }) {
 
 export default function AddSelect () {
 
-  const [ rows, setRows ] = useState([defaultState]);
+  const [ selects, setSelects ] = useState([defaultState]);
 
 
   const handleOnChange = (index, name, value) => {
-    const copyRows = [...rows];
-    copyRows[index]= {
-      ...copyRows[index],
+    const copySelects = [...selects];
+    copySelects[index]= {
+      ...copySelects[index],
       [name]: value
     };
-    setRows(copyRows);
+    setSelects(copySelects);
   };
 
 
   const handleOnAdd = () => {
-    setRows(rows.concat(defaultState));
+    setSelects(selects.concat(defaultState));
   };
 
 
   const handleOnRemove = index => {
-    const copyRows = [...rows];
-    copyRows.splice(index, 1);
-    setRows(copyRows);
+    const copySelects = [...selects];
+    copySelects.splice(index, 1);
+    setSelects(copySelects);
   };
 
 
   return (
     <div className='wrapper-selects'>
-      {rows.map((row, index) => (
+      {selects.map((row, index) => (
         <Select
           {...row}
           onChange={(name, value) => handleOnChange(index, name, value)}
